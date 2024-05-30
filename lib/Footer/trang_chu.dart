@@ -3,10 +3,10 @@ import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:get/get.dart';
 import 'package:shop_giay/DS_SanPham/models.dart';
-import 'controller.dart';
+import 'package:shop_giay/DS_SanPham/controller.dart';
 
-class AppShoesStore extends StatelessWidget {
-  const AppShoesStore({super.key});
+class TrangChu extends StatelessWidget {
+  const TrangChu({super.key});
 
   @override
   Widget build(BuildContext context) {

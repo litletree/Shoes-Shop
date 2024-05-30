@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'page_home.dart';
-import 'package:shop_giay/header_code/page_shopping_cart.dart';
+import 'package:shop_giay/page_home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,16 +12,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          scaffoldBackgroundColor: Colors.white,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-          useMaterial3: true,
-        ),
-        home: PageHome(),
-        routes: {
-          '/gioHang': (context) => GioHang(),
-        }
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
+      ),
+      home: PageHome(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
