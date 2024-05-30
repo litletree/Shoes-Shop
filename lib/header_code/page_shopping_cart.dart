@@ -5,7 +5,9 @@ class GioHang extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Giỏ Hàng'),
+        title: Text('Giỏ Hàng', style: TextStyle(color: Colors.white),),
+        //backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Colors.blue,
       ),
       body: Center(
         child: Text('Code giỏ hàng ở đây'),

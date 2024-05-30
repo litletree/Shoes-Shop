@@ -8,19 +8,12 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+      //padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
       child: Row(
         children: [
-          // Drawner nằm ờ đây
-          Icon(
-              Icons.sort,
-              size: 30,
-              color: Colors.blue,
-          ),
-
           // Tên Shop
           Padding(
-            padding: EdgeInsets.only(left: 20),
+            padding: EdgeInsets.only(left: 10),
             child: Text(
               "PHShop",
               style: TextStyle(
@@ -42,7 +35,7 @@ class Header extends StatelessWidget {
               color: Colors.blue,
             ),
             onPressed: (){
-              Navigator.pushNamed(context, '/second');
+              Navigator.pushNamed(context, '/gioHang');
             },
           )
         ],
