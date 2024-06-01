@@ -11,29 +11,12 @@ class GioHang extends StatefulWidget {
 }
 
 class _GioHangState extends State<GioHang> {
-  int DemSL = 0;
-  // // Giam so luong
-  // void GiamSL(){
-  //   setState(() {
-  //     if(DemSL > 0){
-  //       DemSL--;
-  //     }
-  //   });
-  // }
-  // // Tang so luong
-  // void TangSL(){
-  //   setState(() {
-  //     setState(() {
-  //       DemSL++;
-  //     });
-  //   });
-  // }
   @override
   Widget build(BuildContext context) {
     final AppDataController controller = Get.find<AppDataController>();
     return Scaffold(
       appBar: AppBar(
-        title: Text("Gio hang"),
+        title: Text("Giỏ hàng"),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Obx(() {
@@ -48,6 +31,31 @@ class _GioHangState extends State<GioHang> {
               return ListTile(
                 title: Text(shoe.ten),
                 subtitle: Text('Số lượng: ${item.sl}'),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.remove),
+                      onPressed: () {
+                        if (item.sl > 1) {
+                          controller.updateCartItem(item.idSp, item.sl - 1);
+                        }
+                      },
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.add),
+                      onPressed: () {
+                        controller.updateCartItem(item.idSp, item.sl + 1);
+                      },
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        controller.removeCartItem(item.idSp);
+                      },
+                    ),
+                  ],
+                ),
               );
             },
           );
@@ -56,25 +64,3 @@ class _GioHangState extends State<GioHang> {
     );
   }
 }
-
-// int _counter = 0;
-//
-// void tangsl() {
-//   setState(() {
-//     _counter++;
-//   });
-// }
-// void giamsl() {
-//   setState(() {
-//     _counter--;
-//     if(_counter == -1){
-//       _counter = 0;
-//     }
-//   });
-// }
-//
-// @override
-// void initState() {
-//   super.initState();
-//   value = widget.ratingValue; // Gán giá trị từ widget.ratingValue cho value trong initState
-// }

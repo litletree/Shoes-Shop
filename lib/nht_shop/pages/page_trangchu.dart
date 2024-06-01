@@ -312,7 +312,7 @@ class _PageChiTietSpState extends State<PageChiTietSp> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        //
+                        AppDataController.instance.addToCart(widget.shoe.id, 1); // Thêm 1 sản phẩm vào giỏ hàng
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blueAccent, // Màu nền của nút

@@ -4,7 +4,6 @@ import 'package:shop_giay/nht_shop/pages/page_trangchu.dart';
 import 'package:shop_giay/nht_shop/pages/page_lichsu.dart';
 import 'package:shop_giay/nht_shop/pages/page_admin.dart';
 import 'package:get/get.dart';
-
 import 'nht_shop/controller/controller.dart';
 
 class PageHome extends StatefulWidget {
@@ -18,10 +17,9 @@ class _PageHomeState extends State<PageHome> {
 
   @override
   Widget build(BuildContext context) {
-    final AppDataController controller = Get.find<AppDataController>();
+    //final AppDataController controller = Get.find<AppDataController>();
 
     return Scaffold(
-      // Gọi Header đã tùy chỉnh
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text(
