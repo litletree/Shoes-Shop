@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "370037881746",
+    "project_id": "phuchung-project",
+    "storage_bucket": "phuchung-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370037881746:android:437bcc2c2d88f426151f4b",
+        "android_client_info": {
+          "package_name": "com.example.shop_giay"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7AZXUn-nuvLnMnvcPBTQLvJxb08thxj0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370037881746:android:c94f96ed5ff8cccd151f4b",
+        "android_client_info": {
+          "package_name": "com.example.test_shop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7AZXUn-nuvLnMnvcPBTQLvJxb08thxj0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

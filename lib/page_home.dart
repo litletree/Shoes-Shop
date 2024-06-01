@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:shop_giay/header/Header.dart';
-import 'Footer/trang_chu.dart';
-import 'Footer/lich_su.dart';
-import 'Footer/admin.dart';
+import 'package:shop_giay/nht_shop/pages/page_giohang.dart';
+import 'package:shop_giay/nht_shop/pages/page_trangchu.dart';
+import 'package:shop_giay/nht_shop/pages/page_lichsu.dart';
+import 'package:shop_giay/nht_shop/pages/page_admin.dart';
+import 'package:get/get.dart';
+
+import 'nht_shop/controller/controller.dart';
 
 class PageHome extends StatefulWidget {
-  const PageHome({super.key});
+  PageHome({super.key});
   @override
   State<PageHome> createState() => _PageHomeState();
 }
@@ -15,9 +18,38 @@ class _PageHomeState extends State<PageHome> {
 
   @override
   Widget build(BuildContext context) {
+    final AppDataController controller = Get.find<AppDataController>();
+
     return Scaffold(
       // Gọi Header đã tùy chỉnh
-      appBar: Header(),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text(
+          "NTHShop",
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: Colors.blue,
+          ),
+        ),
+        // Giỏ hàng
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.shopping_cart_outlined,
+              size: 30,
+              color: Colors.blue,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => GioHang()),
+              );
+            },
+          ),
+        ],
+      ),
+
       body: _buildBody(context, index),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
@@ -59,14 +91,16 @@ class _PageHomeState extends State<PageHome> {
   }
 
   _buildHome(BuildContext context) {
-    return TrangChu();
+    return PageTrangChu();
   }
 
   _buildLSMH(BuildContext context) {
-    return LichSuMuaHang();
+    return PageLichSuMuaHang();
   }
 
   _buildAdmin(BuildContext context){
-    return Admin();
+    return ShoeShopAdmin();
   }
 }
+
+ 
