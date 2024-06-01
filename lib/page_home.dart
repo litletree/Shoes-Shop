@@ -3,8 +3,6 @@ import 'package:shop_giay/nht_shop/pages/page_giohang.dart';
 import 'package:shop_giay/nht_shop/pages/page_trangchu.dart';
 import 'package:shop_giay/nht_shop/pages/page_lichsu.dart';
 import 'package:shop_giay/nht_shop/pages/page_admin.dart';
-import 'package:get/get.dart';
-import 'nht_shop/controller/controller.dart';
 
 class PageHome extends StatefulWidget {
   PageHome({super.key});
@@ -30,22 +28,6 @@ class _PageHomeState extends State<PageHome> {
             color: Colors.blue,
           ),
         ),
-        // Giỏ hàng
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.shopping_cart_outlined,
-              size: 30,
-              color: Colors.blue,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => GioHang()),
-              );
-            },
-          ),
-        ],
       ),
 
       body: _buildBody(context, index),
@@ -60,7 +42,7 @@ class _PageHomeState extends State<PageHome> {
           BottomNavigationBarItem(
               activeIcon: Icon(Icons.shopping_bag, color: Colors.blue,),
               icon: Icon(Icons.shopping_bag_outlined, color: Colors.blue,),
-              label: "Lịch sử mua hàng"
+              label: "Giỏ hàng"
           ),
           BottomNavigationBarItem(
               activeIcon: Icon(Icons.admin_panel_settings, color: Colors.blue,),
@@ -82,7 +64,7 @@ class _PageHomeState extends State<PageHome> {
       case 0:
         return _buildHome(context);
       case 1:
-        return _buildLSMH(context);
+        return _buildLGioHang(context);
       case 2:
         return _buildAdmin(context);
     }
@@ -92,8 +74,8 @@ class _PageHomeState extends State<PageHome> {
     return PageTrangChu();
   }
 
-  _buildLSMH(BuildContext context) {
-    return PageLichSuMuaHang();
+  _buildLGioHang(BuildContext context) {
+    return GioHang();
   }
 
   _buildAdmin(BuildContext context){

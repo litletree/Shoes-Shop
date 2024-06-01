@@ -320,7 +320,7 @@ class _PageChiTietSpState extends State<PageChiTietSp> {
                       child: Container(
                         child: Row(
                           children: [
-                            Text("THÊM VÀO GIỎ HÀNG",style: TextStyle(fontSize: 13, color: Colors.white),),
+                            Text("THÊM VÀO GIỎ HÀNG",style: TextStyle(fontSize: 30, color: Colors.white),),
                             SizedBox(width: 5,),
                             Icon(Icons.add_shopping_cart,color: Colors.white,)
                           ],
@@ -328,26 +328,25 @@ class _PageChiTietSpState extends State<PageChiTietSp> {
                       ),
                     ),
                     SizedBox(width: 5,),
-                    ElevatedButton(
-                      onPressed: () {
-
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red, // Màu nền của nút
-                      ),
-                      child: Container(
-                        child: Row(
-                          children: [
-                            Text("ĐẶT HÀNG",style: TextStyle(fontSize: 13, color: Colors.white),),
-                            SizedBox(width: 5,),
-                            Icon(Icons.monetization_on_outlined, color: Colors.white,)
-                          ],
-                        ),
-                      ),
-                    )
+                    // ElevatedButton(
+                    //   onPressed: () {
+                    //
+                    //   },
+                    //   style: ElevatedButton.styleFrom(
+                    //     backgroundColor: Colors.red, // Màu nền của nút
+                    //   ),
+                    //   child: Container(
+                    //     child: Row(
+                    //       children: [
+                    //         Text("ĐẶT HÀNG",style: TextStyle(fontSize: 13, color: Colors.white),),
+                    //         SizedBox(width: 5,),
+                    //         Icon(Icons.monetization_on_outlined, color: Colors.white,)
+                    //       ],
+                    //     ),
+                    //   ),
+                    // )
                   ],
                 )
-                // code here if you want to add something!
               ],
             ),
           )

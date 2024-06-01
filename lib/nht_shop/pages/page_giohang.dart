@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:shop_giay/nht_shop/model/model.dart';
 import 'package:get/get.dart';
 import 'package:shop_giay/nht_shop/controller/controller.dart';
+import 'package:shop_giay/nht_shop/pages/page_dathang.dart';
 
 class GioHang extends StatefulWidget {
-  GioHang({super.key});
+  GioHang({Key? key}) : super(key: key);
 
   @override
   State<GioHang> createState() => _GioHangState();
 }
 
 class _GioHangState extends State<GioHang> {
+  final AppDataController controller = Get.find<AppDataController>();
+
   @override
   Widget build(BuildContext context) {
-    final AppDataController controller = Get.find<AppDataController>();
     return Scaffold(
       appBar: AppBar(
         title: Text("Giỏ hàng"),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: Obx(() {
+      body: Obx((){
         if (controller.gioHang.isEmpty) {
           return Center(child: Text("Giỏ hàng trống"));
         } else {
@@ -31,10 +32,10 @@ class _GioHangState extends State<GioHang> {
               return ListTile(
                 title: Text(shoe.ten),
                 subtitle: Text('Số lượng: ${item.sl}'),
-                trailing: Row(
+                trailing: Row (
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    IconButton(
+                    IconButton (
                       icon: Icon(Icons.remove),
                       onPressed: () {
                         if (item.sl > 1) {
@@ -61,6 +62,15 @@ class _GioHangState extends State<GioHang> {
           );
         }
       }),
+      floatingActionButton: ElevatedButton(
+        onPressed: (){
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => PageDatHang())
+          );
+        },
+        child: Text("Đặt hàng"),
+      ),
     );
   }
 }
