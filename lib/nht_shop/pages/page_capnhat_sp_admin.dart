@@ -33,7 +33,7 @@ class _PageCapNhatSanPham_AdminState extends State<PageCapNhatSanPham_Admin> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Chỉnh sửa sản phẩm"),
+        title: const Text("Cập nhật sản phẩm"),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(

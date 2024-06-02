@@ -25,7 +25,7 @@ class _GioHangState extends State<GioHang> {
           return Center(child: Text("Giỏ hàng trống"));
         } else {
           return ListView.builder(
-            itemCount: controller.gioHang.length,
+            itemCount: controller.slMH_GioHang,
             itemBuilder: (context, index) {
               final item = controller.gioHang[index];
               final shoe = controller.dssp.firstWhere((shoe) => shoe.id == item.idSp);
@@ -39,20 +39,20 @@ class _GioHangState extends State<GioHang> {
                       icon: Icon(Icons.remove),
                       onPressed: () {
                         if (item.sl > 1) {
-                          controller.updateCartItem(item.idSp, item.sl - 1);
+                          controller.capNhatGH(item.idSp, item.sl - 1);
                         }
                       },
                     ),
                     IconButton(
                       icon: Icon(Icons.add),
                       onPressed: () {
-                        controller.updateCartItem(item.idSp, item.sl + 1);
+                        controller.capNhatGH(item.idSp, item.sl + 1);
                       },
                     ),
                     IconButton(
                       icon: Icon(Icons.delete),
                       onPressed: () {
-                        controller.removeCartItem(item.idSp);
+                        controller.xoaKhoiGH(item.idSp);
                       },
                     ),
                   ],

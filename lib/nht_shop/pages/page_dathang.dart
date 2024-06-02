@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:shop_giay/nht_shop/controller/controller.dart';
 
@@ -27,7 +26,7 @@ class PageDatHang extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: controller.gioHang.length,
+              itemCount: controller.slMH_GioHang,
               itemBuilder: (context, index) {
                 final item = controller.gioHang[index];
                 final shoe = controller.dssp.firstWhere((shoe) => shoe.id == item.idSp);
@@ -44,19 +43,13 @@ class PageDatHang extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Tổng cộng:",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
+                Text("Tổng cộng:", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
                 Obx(() {
-                  int total = controller.gioHang.fold(0, (sum, item) {
+                  int tongHoaDon = controller.gioHang.fold(0, (sum, item) {
                     final shoe = controller.dssp.firstWhere((shoe) => shoe.id == item.idSp);
                     return sum + (shoe.gia * item.sl);
                   });
-                  return Text(
-                    "$total.000 VND",
-                    style: TextStyle(fontSize: 16),
-                  );
+                  return Text("$tongHoaDon.000 VND", style: TextStyle(fontSize: 16),);
                 }),
               ],
             ),
@@ -81,7 +74,7 @@ class PageDatHang extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
               onPressed: () {
-                datHang();
+                xoaSPkhoiGH();
               },
               child: Text("Đặt hàng"),
             ),
@@ -91,29 +84,11 @@ class PageDatHang extends StatelessWidget {
     );
   }
 
-  void datHang() async {
-    // Duyệt qua từng sản phẩm trong giỏ hàng
-    for (var item in controller.gioHang) {
-      final shoe = controller.dssp.firstWhere((shoe) => shoe.id == item.idSp);
-      int newSoLuong = shoe.soLuong! - item.sl;
-      if (newSoLuong <= 0) {
-        // Nếu số lượng mới <= 0, xóa sản phẩm khỏi Firebase
-        await FirebaseFirestore.instance.collection("Shoes").doc(shoe.id).delete();
-      } else {
-        // Ngược lại, cập nhật số lượng mới cho sản phẩm trên Firebase
-        await FirebaseFirestore.instance.collection("Shoes").doc(shoe.id).update({"soLuong": newSoLuong});
-      }
+  // Ấn đặt hàng thì sản phẩm trong giỏ hàng bị xóa
+  void xoaSPkhoiGH() async {
+    for (var item in List.from(controller.gioHang)) {
+      controller.xoaKhoiGH(item.idSp);
     }
-
-    // Xóa giỏ hàng
-    controller.gioHang.clear();
-
-    // Hiển thị thông báo "Đặt hàng thành công"
-    Get.snackbar(
-      "Thông báo",
-      "Đặt hàng thành công",
-      backgroundColor: Colors.green,
-      colorText: Colors.white,
-    );
   }
 }
+

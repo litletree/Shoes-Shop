@@ -24,7 +24,7 @@ class AppDataController extends GetxController {
     });
   }
 
-  void addToCart(String idSp, int sl) {
+  void themVaoGH(String idSp, int sl) {
     var item = _gioHang.firstWhereOrNull((element) => element.idSp == idSp);
     if (item == null) {
       _gioHang.add(GH_Item(idSp: idSp, sl: sl));
@@ -34,7 +34,7 @@ class AppDataController extends GetxController {
     update(['gioHang']);
   }
 
-  void updateCartItem(String idSp, int sl) {
+  void capNhatGH(String idSp, int sl) {
     var item = _gioHang.firstWhereOrNull((element) => element.idSp == idSp);
     if (item != null) {
       item.sl = sl;
@@ -42,7 +42,7 @@ class AppDataController extends GetxController {
     }
   }
 
-  void removeCartItem(String idSp) {
+  void xoaKhoiGH(String idSp) {
     _gioHang.removeWhere((element) => element.idSp == idSp);
     update(['gioHang']);
   }

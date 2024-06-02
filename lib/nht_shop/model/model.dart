@@ -8,7 +8,6 @@ class Shoe {
   String? moTa;
   String? anhChinh;
   int? soLuong;
-  List<String>? anhPhu;
 
 
   Shoe({
@@ -19,7 +18,6 @@ class Shoe {
     this.moTa,
     this.anhChinh,
     this.soLuong,
-    this.anhPhu,
   });
 
   Map<String, dynamic> toJson() {
@@ -44,7 +42,6 @@ class Shoe {
       moTa: map['moTa'] as String,
       anhChinh: map['anhChinh'] as String,
       soLuong: map['soLuong'] as int,
-      //anhPhu: map['anhPhu'] as List<String>,
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:get/get.dart';
 import 'package:shop_giay/connection_firebase.dart';
@@ -13,13 +12,13 @@ class PageTrangChu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyFirebase(
-        errorMessage: "Loi ket noi firebase",
-        connectingMessage: "Dang ket noi",
-        builder: (context) => GetMaterialApp(
-          initialBinding: AppDataBindings(),
-          debugShowCheckedModeBanner: false,
-            home: PageShoesStore(),
-        ),
+      errorMessage: "Loi ket noi firebase",
+      connectingMessage: "Dang ket noi",
+      builder: (context) => GetMaterialApp(
+        initialBinding: AppDataBindings(),
+        debugShowCheckedModeBanner: false,
+        home: PageShoesStore(),
+      ),
     );
   }
 }
@@ -149,7 +148,7 @@ class PageShoesStore extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                        "${shoe.gia}.000đ",
+                                        "${shoe.gia} VNĐ",
                                         style: TextStyle(
                                           fontSize: 17,
                                           color: Colors.red,
@@ -178,7 +177,6 @@ class PageShoesStore extends StatelessWidget {
   }
 }
 
-
 class PageChiTietSp extends StatefulWidget {
   Shoe shoe;
 
@@ -189,7 +187,7 @@ class PageChiTietSp extends StatefulWidget {
 }
 
 class _PageChiTietSpState extends State<PageChiTietSp> {
-  double value = 0.0;
+  double value = 4.5;
 
 
   @override
@@ -207,7 +205,7 @@ class _PageChiTietSpState extends State<PageChiTietSp> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (widget.shoe.anhChinh != null || (widget.shoe.anhPhu != null && widget.shoe.anhPhu!.isNotEmpty))
+                if (widget.shoe.anhChinh != null)
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -222,38 +220,22 @@ class _PageChiTietSpState extends State<PageChiTietSp> {
                         ),
                       ],
                     ),
-                    child: ImageSlideshow(
+                    child: widget.shoe.anhChinh != null
+                        ? Image.network(
+                      widget.shoe.anhChinh!,
                       width: double.infinity,
-                      height: 390,
-                      initialPage: 0,
-                      indicatorColor: Colors.blue,
-                      indicatorBackgroundColor: Colors.grey,
-                      children: [
-                        if (widget.shoe.anhChinh != null)
-                          Image.network(
-                            widget.shoe.anhChinh!,
-                            fit: BoxFit.cover,
-                          ),
-                        if (widget.shoe.anhPhu != null)
-                          ...widget.shoe.anhPhu!.map((imageUrl) => Image.network(
-                            imageUrl,
-                            fit: BoxFit.cover,
-                          )),
-                      ],
-                      onPageChanged: (value) {
-                        print('Page changed: $value');
-                      },
-                      autoPlayInterval: null,
-                      isLoop: false,
-                    ),
+                      height: 320,
+                      fit: BoxFit.cover,
+                    )
+                        : Icon(Icons.image_not_supported),
                   )
                 else
-                  Center(child: Text('No images available')),
+                  Center(child: Text('Ảnh không có sẵn')),
                 SizedBox(height: 15),
                 Row(
                     children: [
                       Text(
-                        "${widget.shoe.gia}.000 VND",
+                        "${widget.shoe.gia} VNĐ",
                         style: TextStyle(fontSize: 30, color: Colors.red, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(width: 100,),
@@ -287,8 +269,7 @@ class _PageChiTietSpState extends State<PageChiTietSp> {
                       maxValueVisibility: true,
                       valueLabelVisibility: true,
                       animationDuration: Duration(milliseconds: 1000),
-                      valueLabelPadding:
-                      const EdgeInsets.symmetric(vertical: 1, horizontal: 8),
+                      valueLabelPadding: const EdgeInsets.symmetric(vertical: 1, horizontal: 8),
                       valueLabelMargin: const EdgeInsets.only(right: 8),
                       starOffColor: const Color(0xffe7e8ea),
                       starColor: Colors.yellow,
@@ -312,7 +293,7 @@ class _PageChiTietSpState extends State<PageChiTietSp> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        AppDataController.instance.addToCart(widget.shoe.id, 1); // Thêm 1 sản phẩm vào giỏ hàng
+                        AppDataController.instance.themVaoGH(widget.shoe.id, 1); // Thêm 1 sản phẩm vào giỏ hàng
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blueAccent, // Màu nền của nút
@@ -320,31 +301,14 @@ class _PageChiTietSpState extends State<PageChiTietSp> {
                       child: Container(
                         child: Row(
                           children: [
-                            Text("THÊM VÀO GIỎ HÀNG",style: TextStyle(fontSize: 30, color: Colors.white),),
+                            Text("THÊM VÀO GIỎ HÀNG",style: TextStyle(fontSize: 15, color: Colors.white),),
                             SizedBox(width: 5,),
                             Icon(Icons.add_shopping_cart,color: Colors.white,)
                           ],
                         ),
                       ),
                     ),
-                    SizedBox(width: 5,),
-                    // ElevatedButton(
-                    //   onPressed: () {
-                    //
-                    //   },
-                    //   style: ElevatedButton.styleFrom(
-                    //     backgroundColor: Colors.red, // Màu nền của nút
-                    //   ),
-                    //   child: Container(
-                    //     child: Row(
-                    //       children: [
-                    //         Text("ĐẶT HÀNG",style: TextStyle(fontSize: 13, color: Colors.white),),
-                    //         SizedBox(width: 5,),
-                    //         Icon(Icons.monetization_on_outlined, color: Colors.white,)
-                    //       ],
-                    //     ),
-                    //   ),
-                    // )
+                    SizedBox(width: 5),
                   ],
                 )
               ],
