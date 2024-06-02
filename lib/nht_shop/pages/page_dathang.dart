@@ -33,7 +33,7 @@ class PageDatHang extends StatelessWidget {
                 return ListTile(
                   title: Text(shoe.ten),
                   subtitle: Text('Số lượng: ${item.sl}'),
-                  trailing: Text('${shoe.gia * item.sl}.000 VND'), // Tính tổng giá của sản phẩm
+                  trailing: Text('${shoe.gia * item.sl}VNĐ'), // Tính tổng giá của sản phẩm
                 );
               },
             ),
@@ -49,7 +49,7 @@ class PageDatHang extends StatelessWidget {
                     final shoe = controller.dssp.firstWhere((shoe) => shoe.id == item.idSp);
                     return sum + (shoe.gia * item.sl);
                   });
-                  return Text("$tongHoaDon.000 VND", style: TextStyle(fontSize: 16),);
+                  return Text("$tongHoaDon VNĐ", style: TextStyle(fontSize: 16),);
                 }),
               ],
             ),
@@ -74,7 +74,7 @@ class PageDatHang extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
               onPressed: () {
-                xoaSPkhoiGH();
+                xoaSPkhoiGH(context);  // Truyền context vào phương thức
               },
               child: Text("Đặt hàng"),
             ),
@@ -84,11 +84,26 @@ class PageDatHang extends StatelessWidget {
     );
   }
 
-  // Ấn đặt hàng thì sản phẩm trong giỏ hàng bị xóa
-  void xoaSPkhoiGH() async {
-    for (var item in List.from(controller.gioHang)) {
-      controller.xoaKhoiGH(item.idSp);
+  // Ấn đặt hàng thì sản phẩm trong giỏ hàng bị xóa và hiện SnackBar
+  void xoaSPkhoiGH(BuildContext context) async {
+    if (controller.slMH_GioHang == 0) {
+      showMySnackBar(context, "Giỏ hàng trống", 3);
+    } else {
+      for (var item in List.from(controller.gioHang)) {
+        controller.xoaKhoiGH(item.idSp);
+      }
+      showMySnackBar(context, "Đặt hàng thành công!", 3);
     }
   }
-}
 
+  // Hàm hiển thị SnackBar
+  void showMySnackBar(BuildContext context, String thongBao, int giay) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(thongBao),
+        duration: Duration(seconds: giay),
+      ),
+    );
+  }
+}

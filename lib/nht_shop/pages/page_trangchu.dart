@@ -51,7 +51,7 @@ class PageShoesStore extends StatelessWidget {
                     bottom: 0,
                     child: Container(
                       height: 2,
-                      width: 80, // Adjust width as needed
+                      width: 69, // Adjust width as needed
                       color: Colors.red,
                     ),
                   ),
